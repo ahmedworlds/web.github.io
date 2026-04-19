@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NexaStudio — Web Design & Development Agency</title>
+
+  <!-- Bootstrap 5 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+
+  <style>
+    /* ── Global ───────────────────────────────────────────────── */
+    :root {
+      --primary: #5e35b1;
+      --primary-dark: #4527a0;
+      --accent: #00bcd4;
+      --dark: #0d0d1a;
+      --light-bg: #f5f4fb;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      color: #333;
+      background: #fff;
+    }
+
+    section { padding: 90px 0; }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: .5rem;
+    }
+
+    .section-subtitle {
+      color: #777;
+      margin-bottom: 3rem;
+    }
+
+    .badge-pill {
+      background: var(--accent);
+      color: #fff;
+      font-size: .75rem;
+      padding: .35em .85em;
+      border-radius: 50px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      display: inline-block;
+      margin-bottom: .75rem;
+    }
+
+    /* ── Navbar ───────────────────────────────────────────────── */
+    #navbar {
+      background: rgba(13, 13, 26, .95);
+      backdrop-filter: blur(8px);
+      transition: background .3s;
+    }
+
+    .navbar-brand span { color: var(--accent); }
+
+    .nav-link {
+      color: rgba(255,255,255,.8) !important;
+      font-weight: 500;
+      letter-spacing: .02em;
+      transition: color .2s;
+    }
+
+    .nav-link:hover,
+    .nav-link.active { color: var(--accent) !important; }
+
+    .btn-nav {
+      background: var(--primary);
+      color: #fff !important;
+      border-radius: 50px;
+      padding: .4rem 1.25rem;
+    }
+
+    .btn-nav:hover { background: var(--primary-dark); color: #fff !important; }
+
+    /* ── Hero ─────────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--dark) 0%, #1a1040 60%, #0d2040 100%);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 0;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(94,53,177,.35) 0%, transparent 70%);
+      top: -150px;
+      right: -150px;
+      pointer-events: none;
+    }
+
+    #hero::after {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,188,212,.2) 0%, transparent 70%);
+      bottom: -100px;
+      left: -100px;
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      color: var(--accent);
+      font-size: .9rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.15;
+    }
+
+    .hero-title span { color: var(--accent); }
+
+    .hero-desc {
+      color: rgba(255,255,255,.65);
+      font-size: 1.1rem;
+      max-width: 520px;
+    }
+
+    .btn-primary-custom {
+      background: var(--primary);
+      border: none;
+      border-radius: 50px;
+      padding: .75rem 2rem;
+      font-weight: 600;
+      color: #fff;
+      transition: background .25s, transform .2s;
+    }
+
+    .btn-primary-custom:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      color: #fff;
+    }
+
+    .btn-outline-custom {
+      border: 2px solid rgba(255,255,255,.35);
+      border-radius: 50px;
+      padding: .75rem 2rem;
+      font-weight: 600;
+      color: #fff;
+      background: transparent;
+      transition: border-color .25s, background .25s, transform .2s;
+    }
+
+    .btn-outline-custom:hover {
+      border-color: var(--accent);
+      background: rgba(0,188,212,.1);
+      transform: translateY(-2px);
+      color: #fff;
+    }
+
+    /* Hero floating card */
+    .hero-card {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 20px;
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-stat-num {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .hero-stat-label {
+      color: rgba(255,255,255,.55);
+      font-size: .85rem;
+    }
+
+    /* ── Services ─────────────────────────────────────────────── */
+    #services { background: var(--light-bg); }
+
+    .service-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 2rem 1.75rem;
+      height: 100%;
+      transition: box-shadow .3s, transform .3s;
+      border: 1px solid #ece9f5;
+    }
+
+    .service-card:hover {
+      box-shadow: 0 16px 48px rgba(94,53,177,.12);
+      transform: translateY(-6px);
+    }
+
+    .service-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      color: #fff;
+      margin-bottom: 1.25rem;
+    }
+
+    .service-card h5 {
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: .5rem;
+    }
+
+    .service-card p {
+      color: #666;
+      font-size: .9rem;
+      margin: 0;
+    }
+
+    /* ── Portfolio ────────────────────────────────────────────── */
+    #portfolio { background: #fff; }
+
+    .portfolio-card {
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      height: 240px;
+      background: var(--dark);
+    }
+
+    .portfolio-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: .7;
+      transition: opacity .35s, transform .35s;
+    }
+
+    .portfolio-card:hover img {
+      opacity: .4;
+      transform: scale(1.05);
+    }
+
+    .portfolio-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.5rem;
+      background: linear-gradient(to top, rgba(13,13,26,.85) 0%, transparent 60%);
+    }
+
+    .portfolio-overlay h6 {
+      color: #fff;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .portfolio-overlay small {
+      color: var(--accent);
+      font-size: .78rem;
+    }
+
+    .portfolio-link {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 38px;
+      height: 38px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: .85rem;
+      opacity: 0;
+      transition: opacity .3s;
+      text-decoration: none;
+    }
+
+    .portfolio-card:hover .portfolio-link { opacity: 1; }
+
+    /* ── Testimonials ─────────────────────────────────────────── */
+    #testimonials { background: var(--light-bg); }
+
+    .testimonial-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 2rem;
+      height: 100%;
+      border: 1px solid #ece9f5;
+      position: relative;
+    }
+
+    .testimonial-card::before {
+      content: '\201C';
+      font-size: 5rem;
+      line-height: 0;
+      color: var(--primary);
+      opacity: .15;
+      position: absolute;
+      top: 2rem;
+      left: 1.5rem;
+      font-family: Georgia, serif;
+    }
+
+    .testimonial-stars { color: #ffc107; margin-bottom: .75rem; font-size: .9rem; }
+
+    .testimonial-text {
+      color: #555;
+      font-size: .93rem;
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+
+    .testimonial-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: .75rem;
+    }
+
+    .testimonial-name { font-weight: 700; font-size: .9rem; color: var(--dark); }
+    .testimonial-role { font-size: .78rem; color: #888; }
+
+    /* ── Contact ──────────────────────────────────────────────── */
+    #contact {
+      background: linear-gradient(135deg, var(--dark) 0%, #1a1040 100%);
+    }
+
+    #contact .section-title { color: #fff; }
+    #contact .section-subtitle { color: rgba(255,255,255,.55); }
+
+    .contact-info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-info-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .contact-info-text strong { color: #fff; display: block; font-size: .85rem; margin-bottom: .15rem; }
+    .contact-info-text span { color: rgba(255,255,255,.55); font-size: .9rem; }
+
+    .contact-form {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 20px;
+      padding: 2.5rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .form-control, .form-select {
+      background: rgba(255,255,255,.07) !important;
+      border: 1px solid rgba(255,255,255,.15) !important;
+      border-radius: 10px !important;
+      color: #fff !important;
+      padding: .75rem 1rem;
+    }
+
+    .form-control::placeholder { color: rgba(255,255,255,.4) !important; }
+
+    .form-control:focus, .form-select:focus {
+      box-shadow: 0 0 0 .2rem rgba(0,188,212,.25) !important;
+      border-color: var(--accent) !important;
+    }
+
+    .form-label { color: rgba(255,255,255,.75); font-size: .875rem; font-weight: 500; }
+
+    .btn-submit {
+      background: var(--primary);
+      border: none;
+      border-radius: 50px;
+      padding: .8rem 2.5rem;
+      font-weight: 700;
+      color: #fff;
+      width: 100%;
+      transition: background .25s, transform .2s;
+    }
+
+    .btn-submit:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    /* ── Footer ───────────────────────────────────────────────── */
+    footer {
+      background: #060610;
+      padding: 2.5rem 0 1.5rem;
+      color: rgba(255,255,255,.45);
+      font-size: .875rem;
+    }
+
+    footer .brand { color: #fff; font-weight: 700; font-size: 1.1rem; }
+    footer .brand span { color: var(--accent); }
+
+    .social-link {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.15);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,.55);
+      font-size: .85rem;
+      text-decoration: none;
+      transition: border-color .2s, color .2s, background .2s;
+    }
+
+    .social-link:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(0,188,212,.1);
+    }
+
+    .footer-link {
+      color: rgba(255,255,255,.45);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .footer-link:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════════
+     NAVBAR
+════════════════════════════════════════════════════════════ -->
+<nav id="navbar" class="navbar navbar-expand-lg fixed-top py-3">
+  <div class="container">
+    <a class="navbar-brand fw-800 text-white" href="#hero">
+      Nexa<span>Studio</span>
+    </a>
+
+    <button class="navbar-toggler border-0" type="button"
+            data-bs-toggle="collapse" data-bs-target="#navMenu"
+            aria-controls="navMenu" aria-expanded="false"
+            aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon" style="filter:invert(1)"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+        <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
+        <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        <li class="nav-item ms-lg-2">
+          <a class="nav-link btn-nav" href="#contact">Get a Quote</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════════════════ -->
+<section id="hero">
+  <div class="container py-5">
+    <div class="row align-items-center g-5">
+
+      <!-- Text -->
+      <div class="col-lg-6 text-center text-lg-start">
+        <p class="hero-eyebrow mb-3">
+          <i class="fa-solid fa-circle-dot me-1"></i> Digital Agency
+        </p>
+        <h1 class="hero-title mb-4">
+          We Build <span>Digital</span><br />Experiences That Convert
+        </h1>
+        <p class="hero-desc mb-5">
+          Strategy-driven design, lightning-fast development,
+          and end-to-end digital solutions for ambitious brands.
+        </p>
+        <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start">
+          <a href="#services" class="btn btn-primary-custom">
+            <i class="fa-solid fa-rocket me-2"></i>Our Services
+          </a>
+          <a href="#portfolio" class="btn btn-outline-custom">
+            <i class="fa-regular fa-images me-2"></i>View Work
+          </a>
+        </div>
+      </div>
+
+      <!-- Stats card -->
+      <div class="col-lg-6">
+        <div class="hero-card">
+          <div class="row g-4 text-center">
+            <div class="col-6">
+              <div class="hero-stat-num">200+</div>
+              <div class="hero-stat-label">Projects Delivered</div>
+            </div>
+            <div class="col-6">
+              <div class="hero-stat-num">98%</div>
+              <div class="hero-stat-label">Client Satisfaction</div>
+            </div>
+            <div class="col-6">
+              <div class="hero-stat-num">10+</div>
+              <div class="hero-stat-label">Years of Experience</div>
+            </div>
+            <div class="col-6">
+              <div class="hero-stat-num">50+</div>
+              <div class="hero-stat-label">Expert Team Members</div>
+            </div>
+          </div>
+
+          <hr style="border-color:rgba(255,255,255,.12); margin:1.5rem 0;" />
+
+          <div class="d-flex flex-wrap gap-2">
+            <span class="badge rounded-pill" style="background:rgba(0,188,212,.15);color:#00bcd4;">Bootstrap</span>
+            <span class="badge rounded-pill" style="background:rgba(94,53,177,.2);color:#b39ddb;">React</span>
+            <span class="badge rounded-pill" style="background:rgba(0,188,212,.15);color:#00bcd4;">Node.js</span>
+            <span class="badge rounded-pill" style="background:rgba(94,53,177,.2);color:#b39ddb;">WordPress</span>
+            <span class="badge rounded-pill" style="background:rgba(0,188,212,.15);color:#00bcd4;">cPanel Hosting</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     SERVICES
+════════════════════════════════════════════════════════════ -->
+<section id="services">
+  <div class="container">
+    <div class="text-center">
+      <span class="badge-pill">What We Do</span>
+      <h2 class="section-title">Our Core Services</h2>
+      <p class="section-subtitle">Full-spectrum digital solutions — from idea to launch.</p>
+    </div>
+
+    <div class="row g-4">
+
+      <!-- Web Design -->
+      <div class="col-sm-6 col-lg-4">
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fa-solid fa-pen-nib"></i>
+          </div>
+          <h5>Web Design</h5>
+          <p>Stunning, user-centric interfaces crafted to engage visitors and elevate your brand identity.</p>
+        </div>
+      </div>
+
+      <!-- Development -->
+      <div class="col-sm-6 col-lg-4">
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fa-solid fa-code"></i>
+          </div>
+          <h5>Web Development</h5>
+          <p>Robust, scalable web applications built with modern frameworks and clean, maintainable code.</p>
+        </div>
+      </div>
+
+      <!-- Hosting -->
+      <div class="col-sm-6 col-lg-4">
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fa-solid fa-server"></i>
+          </div>
+          <h5>Web Hosting</h5>
+          <p>Fast, secure, and reliable hosting with 99.9% uptime SLA, daily backups, and free SSL.</p>
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="col-sm-6 col-lg-4">
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fa-solid fa-envelope-open-text"></i>
+          </div>
+          <h5>Business Email</h5>
+          <p>Professional branded email addresses with spam protection, aliases, and mobile sync.</p>
+        </div>
+      </div>
+
+      <!-- Software Consultancy -->
+      <div class="col-sm-6 col-lg-4">
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fa-solid fa-comments"></i>
+          </div>
+          <h5>Software Consultancy</h5>
+          <p>Expert guidance on technology stack selection, architecture design, and digital transformation.</p>
+        </div>
+      </div>
+
+      <!-- Smart Requirement Analysis -->
+      <div class="col-sm-6 col-lg-4">
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fa-solid fa-magnifying-glass-chart"></i>
+          </div>
+          <h5>Smart Requirement Analysis</h5>
+          <p>In-depth discovery sessions to map business goals, user needs, and technical scope precisely.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     PORTFOLIO
+════════════════════════════════════════════════════════════ -->
+<section id="portfolio">
+  <div class="container">
+    <div class="text-center">
+      <span class="badge-pill">Our Work</span>
+      <h2 class="section-title">Featured Portfolio</h2>
+      <p class="section-subtitle">A glimpse of the projects we're proud of.</p>
+    </div>
+
+    <div class="row g-4">
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="portfolio-card">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=70" alt="E-Commerce Platform" />
+          <div class="portfolio-overlay">
+            <small>E-Commerce</small>
+            <h6>ShopWave Platform</h6>
+          </div>
+          <a href="#portfolio" class="portfolio-link" aria-label="View project">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="portfolio-card">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=70" alt="Dashboard App" />
+          <div class="portfolio-overlay">
+            <small>SaaS Dashboard</small>
+            <h6>AnalyticsPro</h6>
+          </div>
+          <a href="#portfolio" class="portfolio-link" aria-label="View project">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="portfolio-card">
+          <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=600&q=70" alt="Corporate Website" />
+          <div class="portfolio-overlay">
+            <small>Corporate</small>
+            <h6>Finova Group</h6>
+          </div>
+          <a href="#portfolio" class="portfolio-link" aria-label="View project">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="portfolio-card">
+          <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&q=70" alt="Tech Startup" />
+          <div class="portfolio-overlay">
+            <small>Tech Startup</small>
+            <h6>LaunchPad App</h6>
+          </div>
+          <a href="#portfolio" class="portfolio-link" aria-label="View project">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="portfolio-card">
+          <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&q=70" alt="Healthcare Portal" />
+          <div class="portfolio-overlay">
+            <small>Healthcare</small>
+            <h6>MediConnect</h6>
+          </div>
+          <a href="#portfolio" class="portfolio-link" aria-label="View project">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="portfolio-card">
+          <img src="https://images.unsplash.com/photo-1542744094-24638eff58bb?w=600&q=70" alt="Real Estate" />
+          <div class="portfolio-overlay">
+            <small>Real Estate</small>
+            <h6>PropVision</h6>
+          </div>
+          <a href="#portfolio" class="portfolio-link" aria-label="View project">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     TESTIMONIALS
+════════════════════════════════════════════════════════════ -->
+<section id="testimonials">
+  <div class="container">
+    <div class="text-center">
+      <span class="badge-pill">Clients Say</span>
+      <h2 class="section-title">Testimonials</h2>
+      <p class="section-subtitle">Real words from the people we've worked with.</p>
+    </div>
+
+    <div class="row g-4">
+
+      <div class="col-md-6 col-lg-4">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <p class="testimonial-text">
+            "NexaStudio transformed our outdated site into a modern, high-converting platform.
+            The team was incredibly professional and delivered ahead of schedule."
+          </p>
+          <div class="d-flex align-items-center">
+            <img src="https://i.pravatar.cc/44?img=1" alt="Sarah J." class="testimonial-avatar" />
+            <div>
+              <div class="testimonial-name">Sarah Johnson</div>
+              <div class="testimonial-role">CEO, BrightPath Retail</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <p class="testimonial-text">
+            "The requirement analysis phase alone saved us months of rework.
+            These guys truly listen before they build — rare quality in the industry."
+          </p>
+          <div class="d-flex align-items-center">
+            <img src="https://i.pravatar.cc/44?img=12" alt="Michael C." class="testimonial-avatar" />
+            <div>
+              <div class="testimonial-name">Michael Chen</div>
+              <div class="testimonial-role">CTO, QuantumSoft Labs</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star-half-stroke"></i>
+          </div>
+          <p class="testimonial-text">
+            "From hosting setup to email configuration, every detail was handled with care.
+            Our uptime has been flawless since we migrated to their infrastructure."
+          </p>
+          <div class="d-flex align-items-center">
+            <img src="https://i.pravatar.cc/44?img=47" alt="Amina K." class="testimonial-avatar" />
+            <div>
+              <div class="testimonial-name">Amina Khalil</div>
+              <div class="testimonial-role">Operations Director, MedCore</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <p class="testimonial-text">
+            "Their software consultancy helped us pick the right tech stack, saving us
+            significant cost and reducing our time-to-market by 40%."
+          </p>
+          <div class="d-flex align-items-center">
+            <img src="https://i.pravatar.cc/44?img=8" alt="David P." class="testimonial-avatar" />
+            <div>
+              <div class="testimonial-name">David Park</div>
+              <div class="testimonial-role">Founder, NovaPulse</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <p class="testimonial-text">
+            "The e-commerce site they built handles thousands of daily transactions without
+            a hiccup. Performance and design are both top-notch."
+          </p>
+          <div class="d-flex align-items-center">
+            <img src="https://i.pravatar.cc/44?img=25" alt="Leila M." class="testimonial-avatar" />
+            <div>
+              <div class="testimonial-name">Leila Morales</div>
+              <div class="testimonial-role">Head of Digital, TrendShop</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <p class="testimonial-text">
+            "Absolutely outstanding communication throughout the project.
+            Delivered a beautiful, fast website that our customers love."
+          </p>
+          <div class="d-flex align-items-center">
+            <img src="https://i.pravatar.cc/44?img=33" alt="Omar F." class="testimonial-avatar" />
+            <div>
+              <div class="testimonial-name">Omar Farouk</div>
+              <div class="testimonial-role">Marketing Manager, Solara</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     CONTACT
+════════════════════════════════════════════════════════════ -->
+<section id="contact">
+  <div class="container">
+    <div class="text-center">
+      <span class="badge-pill">Reach Out</span>
+      <h2 class="section-title">Get In Touch</h2>
+      <p class="section-subtitle">Ready to start your project? Let's talk.</p>
+    </div>
+
+    <div class="row g-5 align-items-start">
+
+      <!-- Contact info -->
+      <div class="col-lg-5">
+        <div class="contact-info-item">
+          <div class="contact-info-icon"><i class="fa-solid fa-location-dot"></i></div>
+          <div class="contact-info-text">
+            <strong>Our Office</strong>
+            <span>123 Digital Avenue, Tech City, TC 10001</span>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon"><i class="fa-solid fa-phone"></i></div>
+          <div class="contact-info-text">
+            <strong>Call Us</strong>
+            <span>+1 (800) 123-4567</span>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon"><i class="fa-solid fa-envelope"></i></div>
+          <div class="contact-info-text">
+            <strong>Email Us</strong>
+            <span>hello@nexastudio.io</span>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon"><i class="fa-solid fa-clock"></i></div>
+          <div class="contact-info-text">
+            <strong>Working Hours</strong>
+            <span>Mon – Fri: 9 AM – 6 PM</span>
+          </div>
+        </div>
+
+        <!-- Social links -->
+        <div class="d-flex gap-2 mt-4">
+          <a href="#contact" class="social-link" aria-label="Twitter">
+            <i class="fa-brands fa-x-twitter"></i>
+          </a>
+          <a href="#contact" class="social-link" aria-label="LinkedIn">
+            <i class="fa-brands fa-linkedin-in"></i>
+          </a>
+          <a href="#contact" class="social-link" aria-label="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="#contact" class="social-link" aria-label="GitHub">
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a href="#contact" class="social-link" aria-label="Dribbble">
+            <i class="fa-brands fa-dribbble"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="col-lg-7">
+        <form class="contact-form" novalidate>
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <label for="fname" class="form-label">First Name</label>
+              <input type="text" id="fname" class="form-control" placeholder="John" required />
+            </div>
+            <div class="col-sm-6">
+              <label for="lname" class="form-label">Last Name</label>
+              <input type="text" id="lname" class="form-control" placeholder="Doe" required />
+            </div>
+            <div class="col-sm-6">
+              <label for="email" class="form-label">Email Address</label>
+              <input type="email" id="email" class="form-control" placeholder="john@example.com" required />
+            </div>
+            <div class="col-sm-6">
+              <label for="phone" class="form-label">Phone (optional)</label>
+              <input type="tel" id="phone" class="form-control" placeholder="+1 555 000 0000" />
+            </div>
+            <div class="col-12">
+              <label for="service" class="form-label">Service Interested In</label>
+              <select id="service" class="form-select" required>
+                <option value="" disabled selected>Select a service…</option>
+                <option>Web Design</option>
+                <option>Web Development</option>
+                <option>Web Hosting</option>
+                <option>Business Email</option>
+                <option>Software Consultancy</option>
+                <option>Requirement Analysis</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label for="message" class="form-label">Your Message</label>
+              <textarea id="message" class="form-control" rows="4"
+                        placeholder="Tell us about your project…" required></textarea>
+            </div>
+            <div class="col-12 mt-1">
+              <button type="submit" class="btn btn-submit">
+                <i class="fa-solid fa-paper-plane me-2"></i>Send Message
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="row align-items-center gy-3">
+      <div class="col-md-4 text-center text-md-start">
+        <span class="brand">Nexa<span>Studio</span></span>
+      </div>
+      <div class="col-md-4 text-center">
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+          <a href="#services" class="footer-link">Services</a>
+          <a href="#portfolio" class="footer-link">Portfolio</a>
+          <a href="#testimonials" class="footer-link">Testimonials</a>
+          <a href="#contact" class="footer-link">Contact</a>
+        </div>
+      </div>
+      <div class="col-md-4 text-center text-md-end">
+        <small>&copy; <span id="year"></span> NexaStudio. All rights reserved.</small>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Bootstrap 5 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  // Dynamic year in footer
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Active nav link on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+
+  function setActiveLink() {
+    const scrollY = window.scrollY + 80;
+    sections.forEach(section => {
+      const top = section.offsetTop;
+      const height = section.offsetHeight;
+      const id = section.getAttribute('id');
+      if (scrollY >= top && scrollY < top + height) {
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + id) link.classList.add('active');
+        });
+      }
+    });
+  }
+
+  window.addEventListener('scroll', setActiveLink);
+  setActiveLink();
+
+  // Close mobile menu on nav-link click
+  document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      const toggler = document.getElementById('navMenu');
+      if (toggler.classList.contains('show')) {
+        document.querySelector('.navbar-toggler').click();
+      }
+    });
+  });
+
+  // Contact form submit (demo)
+  document.querySelector('.contact-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const btn = this.querySelector('.btn-submit');
+    btn.innerHTML = '<i class="fa-solid fa-circle-check me-2"></i>Message Sent!';
+    btn.style.background = '#00897b';
+    setTimeout(() => {
+      btn.innerHTML = '<i class="fa-solid fa-paper-plane me-2"></i>Send Message';
+      btn.style.background = '';
+      this.reset();
+    }, 3000);
+  });
+</script>
+</body>
+</html>
